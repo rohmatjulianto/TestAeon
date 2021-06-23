@@ -32,14 +32,12 @@ class MainActivity : AppCompatActivity() {
         ).allowMainThreadQueries().fallbackToDestructiveMigration().build()
         viewModel.getPhotos(db)
 
-
         binding.search.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
             androidx.appcompat.widget.SearchView.OnQueryTextListener {
             override fun onQueryTextChange(p: String?): Boolean {
                 if (p?.length != 0){
                     val title = p
                     viewModel.searchByName(db, title as String)
-                    Log.d("yy", "onQueryTextChange: $title")
                 }else{
 //                    back default
                     viewModel.getPhotos(db)
@@ -49,7 +47,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onQueryTextSubmit(p0: String?): Boolean {
-                return false
+                return true
             }
         })
 

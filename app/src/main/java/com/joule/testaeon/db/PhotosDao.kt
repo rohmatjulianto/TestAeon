@@ -16,7 +16,7 @@ interface PhotosDao {
     @Query("SELECT * FROM Photos WHERE id IN (:id)")
     fun getById(id: Int): Photos
 
-    @Query("SELECT * FROM Photos WHERE title LIKE :title")
+    @Query("SELECT * FROM Photos WHERE title LIKE '%' || :title || '%'")
     fun searchByTitle(title: String): List<Photos>
 
 }
